@@ -1,0 +1,30 @@
+<!--template url to be used for each product - hook this up to custom to an ng repeat-->
+
+
+	<div ng-repeat="product in Products" class="col-mid-3">
+    <h2>{{product.ProductName}}</h2>
+    <div class="well">  
+	
+	<img ng-src="{{product.imageUrl}}">
+	<!-- <img src="images/doom.png">  -->
+     
+   <ul>
+     <li style="list-style-type:none;">
+      {{product.ProductName}}
+     </li>
+   </ul>
+    <ul>
+     <li style="list-style-type:none;">
+       {{product.ProductDescription}}
+     </li>
+   </ul>
+</div>
+</div>
+
+
+
+
+
+
+
+

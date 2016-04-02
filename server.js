@@ -11,12 +11,14 @@ app.listen( 8000, function(){
 })
 
 
-var db = mongojs('ecommerce', ['products']);
+var db = mongojs('ecommerce', ['products'])
+
+app.use(express.static('public'));
 
 
 
 
-//middlewear
+//middleware
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
@@ -28,21 +30,56 @@ app.use(cors());
 //endpoints
  
 
-app.use(bodyParser.json());
 
 app.post('/api/products', function(req, res){
-	res.send('working alright');
+		db.products.save(req.body, function(err, response){
+			if(err){
+				res.status(500).send(err);
+				
+			} else {
+				res.json(response);
+			}
+		});
 
+});
 
+app.get('/api/products', function(req, res){
+	db.products.find(req.body, function(err, response){
+		if(err){
+			res.status(500).send(err);
+		} else {
+			res.json(response);
+		}
+
+	})
 })
 
-app.get('/api/products/', function(req, res){
-	res.send('get all products');
+
+
+
+app.get('/api/products/:id', function(req, res){
+	console.log(req)
+	var id = req.params.id;
+	console.log(id);
+	db.products.findOne({_id : mongojs.ObjectId(id)}, function(err, response){
+		if(err){
+			res.status(400).send(err);
+		} else {
+			res.json(response);
+		}
+	})
 })
 
-app.get('/api/products:id', function(req, res){
-	res.send('get product with Id');
-})
+
+
+
 app.delete('/api/products/:id', function(req, res){
-	res.send('delete all products with Id');
+	var id = req.params.id;
+	db.products.remove({_id: mongojs.ObjectId(id)}, function(err, response){
+		if(err){
+			res.status(400).send(err);
+		} else {
+			res.json(response);
+		}
+	})
 })
