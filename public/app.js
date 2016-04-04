@@ -22,7 +22,7 @@ $stateProvider
 
 	.state('admin', {
 		url:'/admin',
-		templateUrl: 'products/products.html',
+		templateUrl: 'products/admin/adminProducts.html',
 		controller: 'adminCtrl'
 	})
 

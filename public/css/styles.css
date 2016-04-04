@@ -6,4 +6,6 @@ html, body {
 }
 
 
-$
+#right {
+	text-align: right;
+}

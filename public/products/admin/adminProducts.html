@@ -1,0 +1,21 @@
+<div ng-repeat="product in Products" class="col-mid-3">
+    <h2>{{product.ProductName}}</h2>
+    <div class="well">  
+	
+	<img ng-src="{{product.imageUrl}}">
+	<!-- <img src="images/doom.png">  -->
+     
+   <ul>
+     <li style="list-style-type:none;">
+      {{product.ProductName}}
+     </li>
+   </ul>
+    <ul>
+     <li style="list-style-type:none;">
+       {{product.ProductDescription}}
+     </li>
+   </ul>
+<button type="button" class="btn btn-primary btn-lg">Delete Product</button>
+<button type="button" class="btn btn-secondary btn-lg">Edit product</button>
+</div>
+</div>
